@@ -1,0 +1,38 @@
+---
+/* 	pages/index.astro
+	The landing page.
+*/
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NavButton from "../components/NavButton.astro";
+---
+
+<BaseLayout title="Home" , hero="/images/bobbi-and-hannah.jpg">
+	<div
+		class="flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
+	>
+		<div class="lg:mt-10 mx-0 lg:mx-[-0.8rem]">
+			<span class="cursive text-8xl lg:text-[9rem]">True Beauty</span>
+			<span class="subcursive uppercase text-xs lg:text-[1rem]"
+				>Esthetics</span
+			>
+		</div>
+
+		<div class="mt-6 text-lg lg:text-lg tracking-wide merriweather">
+			<p>Your skin, your confidence, our passion.</p>
+			<p>This is radiance, <b>redefined</b>.</p>
+		</div>
+
+		<div class="mt-10 lg:mt-12">
+			<NavButton
+				title="Explore Treatments"
+				target="/"
+				type="cta"
+				fontSize="large"
+				bold={false},
+				paddingX={16}
+				paddingY={8},
+			/>
+		</div>
+	</div>
+</BaseLayout>
