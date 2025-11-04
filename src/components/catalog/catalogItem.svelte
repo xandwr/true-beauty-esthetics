@@ -1,8 +1,8 @@
 <!-- $components/catalog/catalogItem.svelte -->
 
 <script>
-    const category = "test category";
-    const itemName = "item name";
+    export let category;
+    export let itemName;
 </script>
 
 <div class="border-4 rounded-xl p-2 w-fit h-fit">

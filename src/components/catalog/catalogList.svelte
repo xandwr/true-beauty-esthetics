@@ -5,5 +5,5 @@
 </script>
 
 <div>
-    <CatalogItem />
+    <CatalogItem category="cool category" itemName="awesome item" />
 </div>
