@@ -6,8 +6,8 @@
     export let description: string | undefined = undefined;
 </script>
 
-<div>
-    <h1>{category}</h1>
-    <h1>{itemName}</h1>
-    <h1>{description}</h1>
+<div class="border-2 rounded-xl p-2">
+    <h1 class="uppercase text-sm">{category}</h1>
+    <h1 class="uppercase font-semibold">{itemName}</h1>
+    <h1 class="font-light">{description}</h1>
 </div>

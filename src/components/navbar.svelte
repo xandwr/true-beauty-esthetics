@@ -4,6 +4,7 @@
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Services", href: "/services" },
+        { name: "Store", href: "/store" },
     ];
 </script>
 

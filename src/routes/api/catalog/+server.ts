@@ -21,6 +21,7 @@ export async function GET() {
         const catalogData = await square.catalog.searchItems({
             sortOrder: "ASC",
             archivedState: "ARCHIVED_STATE_NOT_ARCHIVED",
+            productTypes: ["APPOINTMENTS_SERVICE"],
         });
 
         // Resolve category names for each item
