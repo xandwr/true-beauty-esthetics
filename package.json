@@ -21,6 +21,8 @@
 		"vite": "^7.1.10"
 	},
 	"dependencies": {
-		"square": "^43.2.0"
+		"@tailwindcss/vite": "^4.1.16",
+		"square": "^43.2.0",
+		"tailwindcss": "^4.1.16"
 	}
 }
