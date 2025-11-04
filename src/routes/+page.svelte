@@ -1,9 +1,1 @@
-<!-- routes/+page.svelte (landing page) -->
-
-<script>
-
-</script>
-
-<div>
-    
-</div>
+<!-- routes/+page.svelte (homepage) -->
