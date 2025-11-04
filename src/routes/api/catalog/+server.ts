@@ -7,7 +7,10 @@ import { serializeBigInt } from '$utils/serializeBigInt';
 // GET /api/catalog
 export async function GET() {
     try {
-        const catalogData = await square.catalog.list();
+        const catalogData = await square.catalog.searchItems({
+            sortOrder: "ASC",
+            archivedState: "ARCHIVED_STATE_NOT_ARCHIVED",
+        });
         const serializedData = serializeBigInt(catalogData);
         return json(serializedData);
     } catch (err) {

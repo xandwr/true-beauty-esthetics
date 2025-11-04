@@ -1,11 +1,13 @@
 <!-- $components/catalog/catalogItem.svelte -->
 
-<script>
-    export let category;
-    export let itemName;
+<script lang="ts">
+    export let category: string;
+    export let itemName: string;
+    export let description: string | undefined = undefined;
 </script>
 
-<div class="border-4 rounded-xl p-2 w-fit h-fit">
-    <h1 class="font-semibold uppercase">{category}</h1>
-    <h1 class="text-xl uppercase">{itemName}</h1>
+<div>
+    <h1>{category}</h1>
+    <h1>{itemName}</h1>
+    <h1>{description}</h1>
 </div>
