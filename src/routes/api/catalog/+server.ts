@@ -3,10 +3,15 @@
 import { json } from '@sveltejs/kit';
 import { square } from '$lib/server/square';
 import { serializeBigInt } from '$utils/serializeBigInt';
+import type { RequestHandler } from './$types';
 
-// GET /api/catalog
-export async function GET() {
+// GET /api/catalog?productType=APPOINTMENTS_SERVICE or ?productType=REGULAR
+export const GET: RequestHandler = async ({ url }) => {
     try {
+        // Get productType from query params, default to APPOINTMENTS_SERVICE
+        const productTypeParam = url.searchParams.get('productType');
+        const productType = productTypeParam === 'REGULAR' ? 'REGULAR' : 'APPOINTMENTS_SERVICE';
+
         // Fetch all categories first
         const categoryMap = new Map<string, string>();
 
@@ -17,11 +22,11 @@ export async function GET() {
             }
         }
 
-        // Fetch items
+        // Fetch items with the specified product type
         const catalogData = await square.catalog.searchItems({
             sortOrder: "ASC",
             archivedState: "ARCHIVED_STATE_NOT_ARCHIVED",
-            productTypes: ["APPOINTMENTS_SERVICE"],
+            productTypes: [productType],
         });
 
         // Resolve category names for each item
@@ -44,4 +49,4 @@ export async function GET() {
         console.error('Square catalog error:', err);
         return json({ error: 'Failed to fetch catalog' }, { status: 500 });
     }
-}
+};

@@ -3,5 +3,5 @@
 </script>
 
 <main>
-    <CatalogList />
+    <CatalogList productType="REGULAR" />
 </main>

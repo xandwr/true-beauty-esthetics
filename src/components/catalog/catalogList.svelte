@@ -13,12 +13,14 @@
         [key: string]: any;
     }
 
+    export let productType: 'APPOINTMENTS_SERVICE' | 'REGULAR' = 'APPOINTMENTS_SERVICE';
+
     let items: CatalogEntry[] = [];
     let error: string | null = null;
 
     onMount(async () => {
         try {
-            const res = await fetch('/api/catalog');
+            const res = await fetch(`/api/catalog?productType=${productType}`);
             const data = await res.json();
 
             if (data.error) {
