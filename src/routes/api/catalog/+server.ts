@@ -5,6 +5,27 @@ import { square } from '$lib/server/square';
 import { serializeBigInt } from '$utils/serializeBigInt';
 import type { RequestHandler } from './$types';
 
+interface ServiceVariation {
+    id: string;
+    name: string;
+    durationMinutes?: number;
+    priceMoney?: {
+        amount?: bigint;
+        currency?: string;
+    };
+}
+
+interface FlattenedService {
+    serviceName: string;
+    variations: ServiceVariation[];
+}
+
+interface CatalogResponse {
+    categories: {
+        [categoryName: string]: FlattenedService[];
+    };
+}
+
 // GET /api/catalog?productType=APPOINTMENTS_SERVICE or ?productType=REGULAR
 export const GET: RequestHandler = async ({ url }) => {
     try {
@@ -29,21 +50,54 @@ export const GET: RequestHandler = async ({ url }) => {
             productTypes: [productType],
         });
 
-        // Resolve category names for each item
+        // Flatten the service structure grouped by categories
+        const categorizedServices: CatalogResponse = {
+            categories: {}
+        };
+
         if (catalogData.items) {
             for (const item of catalogData.items) {
-                if (item.type === 'ITEM' && item.itemData?.categories) {
-                    const categoryNames = item.itemData.categories
+                if (item.type === 'ITEM' && item.itemData) {
+                    const serviceName = item.itemData.name || 'Unnamed Service';
+
+                    // Extract variations with all necessary fields
+                    const variations: ServiceVariation[] = (item.itemData.variations || []).map((variation: any) => ({
+                        id: variation.id,
+                        name: variation.itemVariationData?.name || serviceName,
+                        durationMinutes: variation.itemVariationData?.serviceDuration
+                            ? Math.floor(Number(variation.itemVariationData.serviceDuration) / 60000)
+                            : undefined,
+                        priceMoney: variation.itemVariationData?.priceMoney ? {
+                            amount: variation.itemVariationData.priceMoney.amount,
+                            currency: variation.itemVariationData.priceMoney.currency
+                        } : undefined
+                    }));
+
+                    const flattenedService: FlattenedService = {
+                        serviceName,
+                        variations
+                    };
+
+                    // Get category names for this item
+                    const categoryNames = (item.itemData.categories || [])
                         .map((cat: any) => categoryMap.get(cat.id))
                         .filter((name: string | undefined): name is string => name !== undefined);
 
-                    // Add resolved category names to the item
-                    (item as any).categoryNames = categoryNames;
+                    // If no categories, put in "Uncategorized"
+                    const categories = categoryNames.length > 0 ? categoryNames : ['Uncategorized'];
+
+                    // Add service to each category it belongs to
+                    for (const categoryName of categories) {
+                        if (!categorizedServices.categories[categoryName]) {
+                            categorizedServices.categories[categoryName] = [];
+                        }
+                        categorizedServices.categories[categoryName].push(flattenedService);
+                    }
                 }
             }
         }
 
-        const serializedData = serializeBigInt(catalogData);
+        const serializedData = serializeBigInt(categorizedServices);
         return json(serializedData);
     } catch (err) {
         console.error('Square catalog error:', err);
