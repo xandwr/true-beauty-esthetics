@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import "@fontsource/dm-sans";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <html lang="en">
@@ -9,16 +10,11 @@ import Header from "../components/Header.astro";
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body class="p-4">
+    <body class="flex flex-col min-h-screen p-4">
         <Header />
-        <article>
+        <article class="flex-1">
             <slot />
         </article>
+        <Footer />
     </body>
 </html>
-
-<style>
-    h1 {
-        font-family: "DM Sans";
-    }
-</style>
