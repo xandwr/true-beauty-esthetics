@@ -1,0 +1,24 @@
+---
+import "../styles/global.css";
+import "@fontsource/dm-sans";
+import Header from "../components/Header.astro";
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body class="p-4">
+        <Header />
+        <article>
+            <slot />
+        </article>
+    </body>
+</html>
+
+<style>
+    h1 {
+        font-family: "DM Sans";
+    }
+</style>
