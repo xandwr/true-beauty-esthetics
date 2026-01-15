@@ -2,4 +2,39 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout />
+<Layout>
+    <section class="max-w-xl mx-auto py-12 text-center">
+        <h2 class="text-3xl font-semibold mb-8">Contact</h2>
+
+        <div class="space-y-4 mb-8">
+            <p>
+                <a
+                    href="tel:+15874014806"
+                    class="text-neutral-700 hover:text-brand-muted"
+                    >+1 587-401-4806</a
+                >
+            </p>
+            <p>
+                <a
+                    href="mailto:truebeautyesthetics@outlook.com"
+                    class="text-neutral-700 hover:text-brand-muted"
+                    >truebeautyesthetics@outlook.com</a
+                >
+            </p>
+            <p class="text-neutral-600">
+                5720 Calgary Trail NW<br />
+                Edmonton, AB T6H 2K2
+            </p>
+            <p class="text-neutral-600">Open until 7:00 p.m.</p>
+        </div>
+
+        <a
+            href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-brand-muted text-white px-8 py-3 rounded hover:bg-brand-dark transition-colors inline-block"
+        >
+            Book Online
+        </a>
+    </section>
+</Layout>

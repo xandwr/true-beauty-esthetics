@@ -4,7 +4,7 @@ import Title from "./Title.astro";
 const pathname = Astro.url.pathname;
 ---
 
-<header class="flex flex-col gap-y-4 border-b-2 p-6 border-neutral-800/20">
+<header class="flex flex-col gap-y-4 border-b-2 p-4 border-neutral-800/20">
     <div class="flex justify-center">
         <Title />
     </div>
@@ -12,26 +12,26 @@ const pathname = Astro.url.pathname;
         <a
             href="/"
             class={pathname === "/"
-                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
-                : "p-2"}>Home</a
+                ? "text-brand-muted bg-neutral-100 p-1 rounded-xl shadow shadow-neutral-200 font-bold"
+                : "p-1"}>Home</a
         >
         <a
             href="/about"
             class={pathname === "/about"
-                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
-                : "p-2"}>About</a
+                ? "text-brand-muted bg-neutral-100 p-1 rounded-xl shadow shadow-neutral-200 font-bold"
+                : "p-1"}>About</a
         >
         <a
             href="/services"
             class={pathname === "/services"
-                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
-                : "p-2"}>Services</a
+                ? "text-brand-muted bg-neutral-100 p-1 rounded-xl shadow shadow-neutral-200 font-bold"
+                : "p-1"}>Services</a
         >
         <a
             href="/contact"
             class={pathname === "/contact"
-                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
-                : "p-2"}>Contact</a
+                ? "text-brand-muted bg-neutral-100 p-1 rounded-xl shadow shadow-neutral-200 font-bold"
+                : "p-1"}>Contact</a
         >
     </nav>
 </header>

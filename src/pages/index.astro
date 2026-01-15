@@ -2,4 +2,24 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout />
+<Layout>
+    <section
+        class="flex flex-col items-center justify-center py-16 text-center"
+    >
+        <h2 class="text-4xl font-light mb-4">
+            Welcome to True Beauty Esthetics
+        </h2>
+        <p class="text-neutral-600 max-w-xl mb-8">
+            Professional esthetic services in Edmonton. Lashes, brows, facials,
+            and more.
+        </p>
+        <a
+            href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-brand-muted text-white px-8 py-3 rounded hover:bg-brand-dark transition-colors"
+        >
+            Book an Appointment
+        </a>
+    </section>
+</Layout>
