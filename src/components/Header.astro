@@ -9,21 +9,29 @@ const pathname = Astro.url.pathname;
         <Title />
     </div>
     <nav class="flex justify-center gap-x-8 uppercase">
-        <a href="/" class={pathname === "/" ? "text-orange-800/66" : ""}>Home</a
+        <a
+            href="/"
+            class={pathname === "/"
+                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
+                : "p-2"}>Home</a
         >
         <a
             href="/about"
-            class={pathname === "/about" ? "text-orange-800/66" : ""}>About</a
+            class={pathname === "/about"
+                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
+                : "p-2"}>About</a
         >
         <a
             href="/services"
-            class={pathname === "/services" ? "text-orange-800/66" : ""}
-            >Services</a
+            class={pathname === "/services"
+                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
+                : "p-2"}>Services</a
         >
         <a
             href="/contact"
-            class={pathname === "/contact" ? "text-orange-800/66" : ""}
-            >Contact</a
+            class={pathname === "/contact"
+                ? "text-orange-800/66 bg-neutral-200 p-2 rounded-xl"
+                : "p-2"}>Contact</a
         >
     </nav>
 </header>
