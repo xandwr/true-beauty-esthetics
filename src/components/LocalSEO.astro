@@ -1,0 +1,29 @@
+---
+// src/components/LocalSEO.astro
+const businessData = {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    name: "True Beauty Esthetics",
+    image: "https://truebeautyesthetics.ca/peony_mural.png",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "5720 Calgary Trail NW",
+        addressLocality: "Edmonton",
+        addressRegion: "AB",
+        postalCode: "T6H 2K2",
+        addressCountry: "CA",
+    },
+    geo: {
+        "@type": "GeoCoordinates",
+        latitude: "53.4912",
+        longitude: "-113.4947",
+    },
+    telephone: "+15874014806",
+    email: "truebeautyesthetics@outlook.com",
+    url: "https://truebeautyesthetics.ca",
+    openingHours: "Mo-Su 09:00-19:00", // "Open until 7:00 p.m."
+    areaServed: "Edmonton, Alberta",
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(businessData)} />

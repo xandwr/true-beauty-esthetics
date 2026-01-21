@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "@fontsource/dm-sans";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import LocalSEO from "../components/LocalSEO.astro";
 
 interface Props {
     backgroundImage?: string;
@@ -19,6 +20,8 @@ const { backgroundImage, backgroundBlur = 0 } = Astro.props;
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
 
         <title>True Beauty Esthetics</title>
+        <meta name="description" content="Professional esthetic services in Edmonton. Lash extensions, brow lamination, facials, waxing, and teeth whitening at True Beauty Esthetics." />
+        <LocalSEO />
     </head>
     <body class="flex flex-col min-h-screen p-4">
         {backgroundImage && (
