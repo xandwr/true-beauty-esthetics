@@ -1,14 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-    --color-brand: #9a3412;
-    --color-brand-light: #c2410c;
-    --color-brand-dark: #7c2d12;
-    --color-brand-muted: rgba(154, 52, 18, 0.66);
+    /* Green from the awning */
+    --color-brand: #2d8a4e;
+    --color-brand-light: #3da562;
+    --color-brand-dark: #1e6b3a;
+    --color-brand-muted: rgba(45, 138, 78, 0.75);
+
+    /* Magenta/pink from the mural */
+    --color-accent: #b83d68;
+    --color-accent-light: #d64d7a;
+    --color-accent-dark: #8a2d4e;
+
+    /* Charcoal from the building */
+    --color-charcoal: #2a2a2a;
+    --color-charcoal-light: #404040;
 }
 
 body {
     font-family: "DM Sans", sans-serif;
+    color: white;
+    background-color: #101318;
 }
 
 @font-face {
