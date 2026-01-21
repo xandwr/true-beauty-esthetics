@@ -1,40 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Content } from "../content/services.mdx";
 ---
 
 <Layout>
     <section class="max-w-2xl mx-auto py-12">
-        <h2 class="text-3xl font-semibold mb-8 text-center">Services</h2>
-
-        <div class="space-y-6">
-            <div>
-                <h3 class="text-xl font-medium mb-2">Lash Extensions</h3>
-                <p class="text-neutral-600">
-                    Classic, hybrid, and volume sets. Fills available.
-                </p>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-medium mb-2">Brow Services</h3>
-                <p class="text-neutral-600">
-                    Brow lamination, tinting, and shaping.
-                </p>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-medium mb-2">Facials</h3>
-                <p class="text-neutral-600">
-                    Customized facial treatments for all skin types.
-                </p>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-medium mb-2">Waxing</h3>
-                <p class="text-neutral-600">Full body waxing services.</p>
-            </div>
-        </div>
-
-        <div class="mt-12 text-center">
+        <div class="text-center mb-8">
             <a
                 href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
                 target="_blank"
@@ -43,9 +14,36 @@ import Layout from "../layouts/Layout.astro";
             >
                 Book Now
             </a>
-            <p class="text-sm text-neutral-500 mt-2">
-                View full pricing and availability on Square
-            </p>
+        </div>
+
+        <div class="services-content">
+            <Content />
         </div>
     </section>
 </Layout>
+
+<style>
+    @reference "../styles/global.css";
+
+    .services-content :global(h1) {
+        @apply text-3xl font-semibold mb-12 text-center;
+    }
+    .services-content :global(h2) {
+        @apply text-2xl font-semibold mb-6 mt-12 pb-2 border-b border-neutral-700;
+    }
+    .services-content :global(h3) {
+        @apply text-lg font-medium mt-8 mb-2 text-brand-light;
+    }
+    .services-content :global(p) {
+        @apply text-neutral-400 text-sm mb-1;
+    }
+    .services-content :global(p strong) {
+        @apply text-white font-semibold;
+    }
+    .services-content :global(p em) {
+        @apply text-neutral-500 text-xs;
+    }
+    .services-content :global(hr) {
+        @apply my-12 border-neutral-800;
+    }
+</style>
