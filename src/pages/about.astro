@@ -13,10 +13,19 @@ const staff = Object.values(staffFiles)
 
 <Layout>
     <section class="max-w-4xl mx-auto py-12 px-4">
-        <div class="border border-neutral-500/50 mb-10" />
+        <div class="border border-neutral-500/50" />
 
         <!-- Header -->
-        <div class="text-center mb-16">
+        <div class="header-section relative text-center overflow-hidden p-8">
+            <!-- Background image with L/R fade using mask -->
+            <div class="absolute inset-0 -z-10 header-bg">
+                <img
+                    src="/images/tbe_exterior_1.jpeg"
+                    alt=""
+                    class="w-full h-full object-cover opacity-30 blur-sm"
+                />
+            </div>
+
             <span class="flex flex-row gap-x-4 font-light mx-auto w-max text-4xl mb-4">
                 <h2 class="">fresh,</h2>
                 <h2 class="">natural,</h2>
@@ -26,18 +35,18 @@ const staff = Object.values(staffFiles)
             <p class="text-neutral-400 max-w-2xl mx-auto">
                 <i>True Beauty Esthetics</i> is Edmonton's destination for professional lash extensions, brow services, facials, and more. We're dedicated to helping you look and feel your best.
             </p>
-        </div>
 
-        <!-- CTA -->
-        <div class="text-center mb-10">
-            <a
-                href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-brand-muted text-white px-10 py-4 rounded-lg hover:bg-brand-dark transition-colors inline-block text-lg font-medium"
-            >
-                Book an Appointment
-            </a>
+            <!-- CTA -->
+            <div class="text-center py-8">
+                <a
+                    href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bg-brand-muted text-white px-10 py-4 rounded-lg hover:bg-brand-dark transition-colors inline-block text-lg font-medium"
+                >
+                    Book an Appointment
+                </a>
+            </div>
         </div>
 
         <div class="border border-neutral-500/50 mb-10" />
@@ -79,6 +88,11 @@ const staff = Object.values(staffFiles)
 
 <style>
     @reference "../styles/global.css";
+
+    .header-bg {
+        mask-image: linear-gradient(to right, transparent, black 30%, black 85%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 30%, black 85%, transparent);
+    }
 
     .staff-bio :global(p) {
         @apply mb-2 last:mb-0;
