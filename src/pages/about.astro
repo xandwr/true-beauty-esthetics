@@ -17,7 +17,12 @@ const staff = Object.values(staffFiles)
 
         <!-- Header -->
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold mb-4">fresh, natural, and effortless</h2>
+            <span class="flex flex-row gap-x-4 font-light mx-auto w-max text-4xl mb-4">
+                <h2 class="">fresh,</h2>
+                <h2 class="">natural,</h2>
+                <h2 class="">effortless.</h2>
+            </span>
+
             <p class="text-neutral-400 max-w-2xl mx-auto">
                 <i>True Beauty Esthetics</i> is Edmonton's destination for professional lash extensions, brow services, facials, and more. We're dedicated to helping you look and feel your best.
             </p>
@@ -39,7 +44,7 @@ const staff = Object.values(staffFiles)
 
         <!-- Meet the Team -->
         <div class="mb-16">
-            <h3 class="text-2xl font-light mb-8 text-center">Meet the Team</h3>
+            <h3 class="text-2xl font-light mb-8 text-center">meet the team:</h3>
             <div class="grid gap-8">
                 {staff.map((member) => (
                     <div class="group p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 hover:border-brand-muted transition-all">
