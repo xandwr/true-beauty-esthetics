@@ -2,4 +2,75 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout />
+<Layout>
+    <section class="max-w-4xl mx-auto py-12 px-4">
+        <div class="border border-neutral-500/50 mb-10" />
+
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-light mb-2">Studio Policies</h1>
+            <p class="text-neutral-500 text-sm">Last updated on Jan. 23, 2026</p>
+        </div>
+
+        <!-- Intro -->
+        <p class="text-neutral-400 text-center max-w-2xl mx-auto mb-12">
+            To ensure the best experience for all of our valued clients, please take a moment to review our studio policies. By booking an appointment with <i>True Beauty Esthetics</i>, you agree to the following terms:
+        </p>
+
+        <!-- Policies -->
+        <div class="space-y-8">
+            <div class="policy-card">
+                <h2>Appointment Policy</h2>
+                <p>Please arrive on time to your scheduled appointment. If you are running late, we kindly ask that you notify us as soon as possible. Clients arriving more than 10 minutes late may need to reschedule and will be considered a no-show at the discretion of the service provider.</p>
+            </div>
+
+            <div class="policy-card">
+                <h2>No-Show & Late Cancellation Fee</h2>
+                <p>A <strong class="text-white">$45 fee</strong> will be charged for no-shows and cancellations with less than 24 hours' notice. This fee must be paid before rebooking any future appointments. We understand that emergencies happen. One grace occurrence may be allowed per client at our discretion.</p>
+            </div>
+
+            <div class="policy-card">
+                <h2>Payment Methods</h2>
+                <p>We accept cash, debit, credit, and e-transfer. E-transfer must be sent before the appointment begins.</p>
+            </div>
+
+            <div class="policy-card">
+                <h2>Health & Safety</h2>
+                <p>Please do not attend your appointment if you are feeling unwell, have a contagious condition, or have had recent exposure to illness. If you have any allergies, skin sensitivities, or are pregnant, please inform us in advance so we can adjust treatments accordingly.</p>
+            </div>
+
+            <div class="policy-card">
+                <h2>Age Policy</h2>
+                <p>Clients must be <strong class="text-white">18 years or older</strong> for certain services (such as waxing or lash extensions) unless accompanied by a parent or guardian with written consent.</p>
+            </div>
+
+            <div class="policy-card">
+                <h2>Service Satisfaction</h2>
+                <p>We strive for perfection and your satisfaction is our priority. If you have any concerns about your service, please contact us within 48 hours so we can make it right.</p>
+            </div>
+
+            <div class="policy-card">
+                <h2>Respectful Environment</h2>
+                <p><i>True Beauty Esthetics</i> is a safe, inclusive, and respectful space for all. Any form of harassment, inappropriate behavior, or discrimination will result in immediate termination of the service and banning from future bookings.</p>
+            </div>
+        </div>
+
+        <div class="border border-neutral-500/50 mt-12" />
+    </section>
+</Layout>
+
+<style>
+    @reference "../styles/global.css";
+
+    .policy-card {
+        @apply p-6 rounded-xl bg-neutral-900/50 border border-neutral-800;
+    }
+
+    .policy-card h2 {
+        @apply text-xl font-medium text-white mb-3;
+    }
+
+    .policy-card p {
+        @apply text-neutral-400 leading-relaxed;
+    }
+</style>
