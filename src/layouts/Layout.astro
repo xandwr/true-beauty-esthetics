@@ -38,5 +38,35 @@ const { backgroundImage, backgroundBlur = 0 } = Astro.props;
             <slot />
         </article>
         <Footer />
+
+        <script>
+            // Intersection Observer for scroll animations
+            if (typeof window !== 'undefined') {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate');
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe elements with animation classes
+                document.addEventListener('DOMContentLoaded', () => {
+                    const animatedElements = document.querySelectorAll('.fade-in-up:not(.animate), .fade-in:not(.animate), .gallery-item, .testimonial-card');
+                    animatedElements.forEach(el => observer.observe(el));
+                });
+
+                // Re-observe after navigation (for Astro view transitions)
+                document.addEventListener('astro:after-swap', () => {
+                    const animatedElements = document.querySelectorAll('.fade-in-up:not(.animate), .fade-in:not(.animate), .gallery-item, .testimonial-card');
+                    animatedElements.forEach(el => observer.observe(el));
+                });
+            }
+        </script>
     </body>
 </html>

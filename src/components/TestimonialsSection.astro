@@ -1,0 +1,108 @@
+---
+// Placeholder Testimonials Component
+const testimonials = [
+    {
+        name: "Sarah M.",
+        service: "Volume Lash Extensions",
+        rating: 5,
+        text: "Absolutely incredible work! My lashes look so natural yet glamorous. Bobbi is a true artist and made me feel so comfortable throughout the entire process.",
+        image: "https://i.pravatar.cc/150?img=1",
+    },
+    {
+        name: "Jessica T.",
+        service: "Brow Lamination",
+        rating: 5,
+        text: "I've been going to True Beauty for over a year now and wouldn't trust anyone else with my brows. The results are always flawless and last for weeks!",
+        image: "https://i.pravatar.cc/150?img=5",
+    },
+    {
+        name: "Amanda K.",
+        service: "Custom Facial",
+        rating: 5,
+        text: "The facial was so relaxing and my skin has never looked better! The customized approach really made a difference. Highly recommend!",
+        image: "https://i.pravatar.cc/150?img=9",
+    },
+];
+---
+
+<section class="py-20 px-8">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-light text-center mb-4">
+            what our clients say
+        </h2>
+        <p class="text-neutral-400 text-center mb-12 max-w-2xl mx-auto">
+            Join hundreds of satisfied clients who trust us with their beauty needs.
+            <span class="text-neutral-500 text-sm block mt-2"
+                >(Placeholder testimonials)</span
+            >
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {
+                testimonials.map((testimonial, index) => (
+                    <div
+                        class="testimonial-card bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 rounded-xl p-6 hover:border-brand-muted transition-all duration-300"
+                        style={`animation-delay: ${index * 0.15}s`}
+                    >
+                        <div class="flex items-center gap-4 mb-4">
+                            <img
+                                src={testimonial.image}
+                                alt={testimonial.name}
+                                class="w-12 h-12 rounded-full object-cover"
+                            />
+                            <div>
+                                <p class="font-semibold text-white">
+                                    {testimonial.name}
+                                </p>
+                                <p class="text-sm text-neutral-400">
+                                    {testimonial.service}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-1 mb-3">
+                            {Array.from({ length: testimonial.rating }).map(
+                                () => (
+                                    <svg
+                                        class="w-4 h-4 text-accent"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                )
+                            )}
+                        </div>
+
+                        <p class="text-neutral-300 text-sm leading-relaxed">
+                            "{testimonial.text}"
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="text-center mt-12">
+            <a
+                href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary inline-block"
+            >
+                Book Your Appointment
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .testimonial-card {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(184, 61, 104, 0.2);
+    }
+</style>

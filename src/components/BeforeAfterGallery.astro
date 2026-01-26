@@ -1,0 +1,81 @@
+---
+// Placeholder Before/After Gallery Component
+const placeholderImages = [
+    {
+        before: "",
+        after: "",
+        title: "Lash Extensions",
+    },
+    {
+        before: "",
+        after: "",
+        title: "Brow Lamination",
+    },
+    {
+        before: "",
+        after: "",
+        title: "Custom Facial",
+    },
+    {
+        before: "",
+        after: "",
+        title: "Volume Lashes",
+    },
+];
+---
+
+<section class="py-20 px-8 bg-black/20">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-light text-center mb-4">
+            results that speak
+        </h2>
+        <p class="text-neutral-400 text-center mb-12 max-w-2xl mx-auto">
+            See the transformative power of our expert esthetic services.
+            <span class="text-neutral-500 text-sm block mt-2"
+                >(Placeholder images)</span
+            >
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {
+                placeholderImages.map((image, index) => (
+                    <div
+                        class="gallery-item relative overflow-hidden rounded-lg aspect-square group cursor-pointer"
+                        style={`animation-delay: ${index * 0.1}s`}
+                    >
+                        <img
+                            src={image.before}
+                            alt={`${image.title} before`}
+                            class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
+                        />
+                        <img
+                            src={image.after}
+                            alt={`${image.title} after`}
+                            class="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <p class="text-white font-semibold text-lg">
+                                    {image.title}
+                                </p>
+                                <p class="text-brand-light text-sm">
+                                    Hover to see after
+                                </p>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3 bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                            After
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style>
+    .gallery-item {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+</style>

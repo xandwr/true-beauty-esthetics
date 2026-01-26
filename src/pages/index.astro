@@ -1,26 +1,44 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import BeforeAfterGallery from "../components/BeforeAfterGallery.astro";
+import TestimonialsSection from "../components/TestimonialsSection.astro";
 ---
 
 <Layout backgroundImage="/images/peony_mural.png" backgroundBlur={10}>
     <section
         class="flex flex-col m-auto items-center justify-center text-center min-h-[60vh] px-8"
     >
-        <div class="flex flex-row gap-x-8 text-4xl md:text-9xl ">
-            <h2 class="font-light cursive md:translate-y-[-1.33rem]">
+        <div class="flex flex-row gap-x-8 text-4xl md:text-9xl">
+            <h2
+                class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-1"
+            >
                 Uncover
             </h2>
-            <h2 class="font-light cursive md:translate-y-[-1.33rem]">
+            <h2
+                class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-2"
+            >
                 your
             </h2>
-            <h2 class="font-light cursive md:translate-y-[-1.33rem]">
+            <h2
+                class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-3"
+            >
                 radiance.
             </h2>
         </div>
 
-        <p class="text-neutral-200 max-w-xl mb-8 mx-auto">
+        <p class="text-neutral-200 max-w-xl mb-8 mx-auto text-lg leading-relaxed fade-in-up stagger-4">
             Professional esthetic services in Edmonton. Lashes, brows, facials,
             and more.
         </p>
+
+        <a
+            href="/services"
+            class="btn-primary fade-in-up stagger-5 inline-block"
+        >
+            Explore Services
+        </a>
     </section>
+
+    <BeforeAfterGallery />
+    <TestimonialsSection />
 </Layout>

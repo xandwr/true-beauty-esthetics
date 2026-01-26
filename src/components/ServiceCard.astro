@@ -1,0 +1,75 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    price: string;
+    duration: string;
+    category: string;
+}
+
+const { title, description, price, duration, category } = Astro.props;
+
+// Category color mapping
+const categoryColors: Record<string, string> = {
+    lashes: "bg-brand text-white",
+    brows: "bg-accent text-white",
+    facials: "bg-brand-light text-white",
+    teeth: "bg-accent-light text-white",
+    waxing: "bg-charcoal-light text-white",
+};
+
+const categoryColor = categoryColors[category.toLowerCase()] || "bg-neutral-700 text-white";
+---
+
+<div
+    class="service-card bg-neutral-900/50 backdrop-blur-sm border border-neutral-800 rounded-xl p-6 card-hover"
+    data-category={category.toLowerCase()}
+>
+    <div class="flex justify-between items-start mb-4">
+        <h3 class="text-xl font-semibold text-white flex-1 pr-4">
+            {title}
+        </h3>
+        <span
+            class={`${categoryColor} px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide whitespace-nowrap`}
+        >
+            {category}
+        </span>
+    </div>
+
+    <p class="text-neutral-400 text-sm leading-relaxed mb-6 line-clamp-3">
+        {description}
+    </p>
+
+    <div class="flex justify-between items-center pt-4 border-t border-neutral-800">
+        <div>
+            <p class="text-2xl font-bold text-brand-light">
+                {price}
+            </p>
+            <p class="text-xs text-neutral-500 mt-1">
+                {duration}
+            </p>
+        </div>
+        <a
+            href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-brand/20 hover:bg-brand text-brand-light hover:text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 border border-brand/30 hover:border-brand"
+        >
+            Book Now
+        </a>
+    </div>
+</div>
+
+<style>
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .service-card:hover {
+        border-color: rgba(45, 138, 78, 0.5);
+        box-shadow: 0 10px 40px rgba(45, 138, 78, 0.15);
+    }
+</style>

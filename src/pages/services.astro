@@ -1,49 +1,380 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Content } from "../content/services.mdx";
+import ServiceCard from "../components/ServiceCard.astro";
+
+// Parse services data manually from the MDX structure
+const services = [
+    // Lash Lifts & Tints
+    {
+        title: "Lash Lift & Tint",
+        description: "Lash Lifts use a perming technology to curl the lash with results that last up to 6 weeks and tinting involves dying the hairs on the brow and lash to achieve a desired colour.",
+        price: "$100.00",
+        duration: "55 min",
+        category: "Lashes",
+    },
+    {
+        title: "Lash Lift",
+        description: "Lash Lifts use a perming technology to curl the lash with results that last up to 6 weeks. Clients will notice immediate results!",
+        price: "$85.00",
+        duration: "45 min",
+        category: "Lashes",
+    },
+    {
+        title: "Lash Tint",
+        description: "Tinting involves dying the hairs on the brow and lash to achieve a desired colour. Clients will notice immediate results!",
+        price: "$40.00",
+        duration: "20 min",
+        category: "Lashes",
+    },
+    // Lash Extensions
+    {
+        title: "Classic Full Set",
+        description: "The ultimate natural enhancement. Each extension is carefully applied one-to-one onto your natural lashes, creating a clean, defined look.",
+        price: "$130.00",
+        duration: "2 hr",
+        category: "Lashes",
+    },
+    {
+        title: "Classic Fill",
+        description: "Keep your lashes looking full, fresh, and flawless. A lash fill involves carefully replacing extensions that have grown out or shed naturally.",
+        price: "$85.00",
+        duration: "1 hr 30 min",
+        category: "Lashes",
+    },
+    {
+        title: "Hybrid Full Set",
+        description: "The best of both worlds. A blend of classic and volume techniques gives you a textured, fuller look without being too dramatic.",
+        price: "$150.00",
+        duration: "2 hr 30 min",
+        category: "Lashes",
+    },
+    {
+        title: "Hybrid Fill",
+        description: "Maintain the shape and density of your hybrid lash set. Recommended every 2–3 weeks to ensure your lashes stay beautiful and healthy.",
+        price: "$95.00",
+        duration: "1 hr 45 min",
+        category: "Lashes",
+    },
+    {
+        title: "Volume Full Set",
+        description: "Turn up the glam. Volume lashes use lightweight fans (2-6 lashes per natural lash) to create a fuller, fluffier lash line.",
+        price: "$170.00",
+        duration: "3 hr",
+        category: "Lashes",
+    },
+    {
+        title: "Volume Fill",
+        description: "Keep your volume lashes looking luxurious. Fills recommended every 2–3 weeks to maintain fullness and density.",
+        price: "$110.00",
+        duration: "2 hr",
+        category: "Lashes",
+    },
+    {
+        title: "Mega Volume Full Set",
+        description: "Maximum drama, maximum impact. Mega-volume lashes use ultra-fine extensions (6-16+ lashes per fan) for an ultra-dark, dense finish.",
+        price: "$180.00",
+        duration: "3 hr",
+        category: "Lashes",
+    },
+    {
+        title: "Mega Volume Fill",
+        description: "Maintain your bold, statement lashes that feel weightless. Regular fills keep them looking fresh and full.",
+        price: "$120.00",
+        duration: "2 hr",
+        category: "Lashes",
+    },
+    {
+        title: "YY Full Set",
+        description: "A fresh take on texture. YY lashes create a soft, fuller look with a trendy, spiky effect and lighter feel.",
+        price: "$140.00",
+        duration: "2 hr",
+        category: "Lashes",
+    },
+    {
+        title: "YY Fill",
+        description: "Keep your YY lashes looking textured and full. Fills help maintain the unique split-tip design.",
+        price: "$90.00",
+        duration: "1 hr 30 min",
+        category: "Lashes",
+    },
+    {
+        title: "Wet Full Set",
+        description: "Glossy, sleek, and bold. Wet look lashes mimic the appearance of mascara-coated lashes with a fresh-out-of-the-water effect.",
+        price: "$150.00",
+        duration: "2 hr 30 min",
+        category: "Lashes",
+    },
+    {
+        title: "Wet Fill",
+        description: "Maintain your edgy, defined wet-look lash line. Regular fills keep the glossy effect looking perfect.",
+        price: "$100.00",
+        duration: "1 hr 45 min",
+        category: "Lashes",
+    },
+    {
+        title: "Lash Extension Removal",
+        description: "Safe and gentle removal of lash extensions without damaging your natural lashes. Professional-grade remover carefully dissolves adhesive.",
+        price: "$35.00",
+        duration: "30 min",
+        category: "Lashes",
+    },
+    // Brows
+    {
+        title: "Brow Lamination",
+        description: "Brow Lamination uses a perming solution to straighten brow hairs, creating a fuller brow appearance. Clients will see immediate results!",
+        price: "$80.00",
+        duration: "40 min",
+        category: "Brows",
+    },
+    {
+        title: "Brow Tint",
+        description: "Tinting involves dying the hairs on the brow to achieve a desired colour. Clients will notice immediate results!",
+        price: "$30.00",
+        duration: "15 min",
+        category: "Brows",
+    },
+    // Facials
+    {
+        title: "Custom Facial",
+        description: "Professional-grade skincare tailored to your skin type. Includes cleanse, exfoliation, facial massage, rejuvenating mask, and finishing serums with SPF.",
+        price: "$120.00",
+        duration: "1 hr",
+        category: "Facials",
+    },
+    // Teeth Whitening
+    {
+        title: "16% Teeth Whitening",
+        description: "Brighten your smile up to 16 shades! 16% H2O2 Gel that's Enamel Safe, Vegan, Gluten Free, Kosher, and Cruelty Free. Includes At Home Care Kit.",
+        price: "$149.00",
+        duration: "1 hr 15 min",
+        category: "Teeth",
+    },
+    // Waxing
+    {
+        title: "Full Face Wax",
+        description: "High-quality wax gently removes hair from the root, leaving your skin soft and refreshed. Perfect for quick, efficient hair removal.",
+        price: "$55.00",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Brow Wax",
+        description: "Professional brow waxing for clean, defined brows.",
+        price: "$20.00",
+        duration: "15 min",
+        category: "Waxing",
+    },
+    {
+        title: "Lip Wax",
+        description: "Quick and effective upper lip waxing.",
+        price: "$20.00",
+        duration: "10 min",
+        category: "Waxing",
+    },
+    {
+        title: "Chin Wax",
+        description: "Smooth chin waxing for a clean finish.",
+        price: "$20.00",
+        duration: "15 min",
+        category: "Waxing",
+    },
+    {
+        title: "Sideburns Wax",
+        description: "Professional sideburn waxing service.",
+        price: "$25.00",
+        duration: "20 min",
+        category: "Waxing",
+    },
+    {
+        title: "Underarms Wax",
+        description: "Thorough underarm waxing for smooth, hair-free skin.",
+        price: "$25.00",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Half Arm Wax",
+        description: "Professional waxing for lower or upper arms.",
+        price: "$30.00",
+        duration: "20 min",
+        category: "Waxing",
+    },
+    {
+        title: "Full Arm Wax",
+        description: "Complete arm waxing. Floating scale $50-$90 based on hair growth, determined at specialist's discretion.",
+        price: "$50.00+",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Lower Leg Wax",
+        description: "Professional lower leg waxing service.",
+        price: "$40.00",
+        duration: "20 min",
+        category: "Waxing",
+    },
+    {
+        title: "Upper Leg Wax",
+        description: "Professional upper leg waxing service.",
+        price: "$50.00",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Full Leg Wax",
+        description: "Complete leg waxing. Floating scale $70-$120 based on hair growth, determined at specialist's discretion.",
+        price: "$70.00+",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Bikini Wax",
+        description: "Professional bikini waxing service.",
+        price: "$35.00",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Brazilian Wax",
+        description: "Professional Brazilian wax. Floating scale $75-$120 based on hair growth, determined at specialist's discretion.",
+        price: "$75.00+",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Brazilian with Design",
+        description: "Brazilian wax with custom design (heart, star, or initial). Floating scale $95-$140 based on hair growth.",
+        price: "$95.00+",
+        duration: "1 hr",
+        category: "Waxing",
+    },
+    {
+        title: "Abdomen Wax",
+        description: "Professional abdomen waxing. Floating scale $30-$70 based on hair growth, determined at specialist's discretion.",
+        price: "$30.00+",
+        duration: "30 min",
+        category: "Waxing",
+    },
+    {
+        title: "Chest Wax",
+        description: "Professional chest waxing. Floating scale $60-$120 based on hair growth, determined at specialist's discretion.",
+        price: "$60.00+",
+        duration: "45 min",
+        category: "Waxing",
+    },
+    {
+        title: "Back Wax",
+        description: "Professional back waxing. Floating scale $60-$120 based on hair growth, determined at specialist's discretion.",
+        price: "$60.00+",
+        duration: "45 min",
+        category: "Waxing",
+    },
+];
+
+const categories = ["All", "Lashes", "Brows", "Facials", "Teeth", "Waxing"];
 ---
 
 <Layout>
-    <section class="max-w-2xl mx-auto py-12">
-        <div class="text-center mb-8">
+    <section class="max-w-7xl mx-auto py-12 px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-light mb-4 fade-in-up">
+                our services
+            </h1>
+            <p class="text-neutral-300 text-lg mb-8 max-w-2xl mx-auto fade-in-up stagger-2">
+                Expert esthetic services tailored to enhance your natural beauty.
+                From lashes to facials, we've got you covered.
+            </p>
             <a
                 href="https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="bg-brand-muted text-white px-8 py-3 rounded hover:bg-brand-dark transition-colors inline-block"
+                class="btn-primary fade-in-up stagger-3"
             >
-                Book Now
+                Book Your Appointment
             </a>
         </div>
 
-        <div class="services-content">
-            <Content />
+        <!-- Category Filter -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in-up stagger-4">
+            {
+                categories.map((cat) => (
+                    <button
+                        class="filter-btn px-6 py-2 rounded-full border-2 transition-all duration-300 font-medium"
+                        data-category={cat.toLowerCase()}
+                    >
+                        {cat}
+                    </button>
+                ))
+            }
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="services-grid">
+            {
+                services.map((service) => (
+                    <ServiceCard
+                        title={service.title}
+                        description={service.description}
+                        price={service.price}
+                        duration={service.duration}
+                        category={service.category}
+                    />
+                ))
+            }
         </div>
     </section>
 </Layout>
 
-<style>
-    @reference "../styles/global.css";
+<script>
+    // Category filtering logic
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const serviceCards = document.querySelectorAll(".service-card");
 
-    .services-content :global(h1) {
-        @apply text-3xl font-semibold mb-12 text-center;
+    // Set initial active state
+    filterButtons[0]?.classList.add("active");
+
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const category = button.getAttribute("data-category");
+
+            // Update active button
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            // Filter cards
+            serviceCards.forEach((card) => {
+                const cardCategory = card.getAttribute("data-category");
+                if (category === "all" || cardCategory === category) {
+                    card.classList.remove("hidden");
+                    (card as HTMLElement).style.animation = "fadeInUp 0.5s ease-out";
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
+        });
+    });
+</script>
+
+<style>
+    .filter-btn {
+        border-color: #404040;
+        color: #9ca3af;
+        background: transparent;
     }
-    .services-content :global(h2) {
-        @apply text-2xl font-semibold mb-6 mt-12 pb-2 border-b border-neutral-700;
+
+    .filter-btn:hover {
+        border-color: #3da562;
+        color: #3da562;
+        background: rgba(45, 138, 78, 0.1);
     }
-    .services-content :global(h3) {
-        @apply text-lg font-medium mt-8 mb-2 text-brand-light;
+
+    .filter-btn.active {
+        border-color: #2d8a4e;
+        background: #2d8a4e;
+        color: white;
     }
-    .services-content :global(p) {
-        @apply text-neutral-400 text-sm mb-1;
-    }
-    .services-content :global(p strong) {
-        @apply text-white font-semibold;
-    }
-    .services-content :global(p em) {
-        @apply text-neutral-500 text-xs;
-    }
-    .services-content :global(hr) {
-        @apply my-12 border-neutral-800;
+
+    .hidden {
+        display: none;
     }
 </style>
