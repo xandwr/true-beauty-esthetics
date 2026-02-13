@@ -28,7 +28,7 @@ const { backgroundImage, backgroundBlur = 0 } = Astro.props;
     <body class="flex flex-col min-h-screen p-4">
         {backgroundImage && (
             <div
-                class="fixed inset-0 -z-10 bg-cover bg-center bg-fixed"
+                class="fixed inset-0 -z-10 bg-cover bg-position-[25%_center] md:bg-center bg-fixed"
                 style={`background-image: url('${backgroundImage}'); filter: blur(${backgroundBlur}px);`}
             ></div>
         )}
