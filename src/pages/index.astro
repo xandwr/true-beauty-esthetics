@@ -5,11 +5,13 @@ import TestimonialsSection from "../components/TestimonialsSection.astro";
 
 <Layout backgroundImage="/images/peony_mural.png" backgroundBlur={10}>
     <section
-        class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-6 mx-auto w-full max-w-7xl md:min-h-[calc(100dvh-var(--header-h,0px)-var(--footer-h,0px)-2rem)]"
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-6 mx-auto w-full max-w-7xl md:min-h-[calc(100dvh-var(--header-h,0)-var(--footer-h,0)-2rem)]"
     >
         <!-- Hero panel -->
-        <div class="flex flex-col items-center justify-center text-center">
-            <div class="flex flex-row gap-x-6 mb-4 text-5xl md:text-7xl lg:text-8xl">
+        <div
+            class="relative flex flex-col items-center justify-start mt-12 text-center min-h-[calc(100dvh-var(--header-h,0)-1rem)] md:min-h-0"
+        >
+            <div class="flex flex-row gap-x-6 mb-12 text-8xl leading-[0.5]">
                 <h2
                     class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-1"
                 >
@@ -38,10 +40,30 @@ import TestimonialsSection from "../components/TestimonialsSection.astro";
             >
                 Explore Services
             </a>
+
+            <a
+                href="#testimonials"
+                class="md:hidden absolute bottom-20 left-0 right-0 flex flex-col items-center gap-1 text-xs text-neutral-400 hover:text-neutral-200 transition-colors"
+            >
+                <span>Scroll for testimonials</span>
+                <svg
+                    class="w-4 h-4 animate-bounce"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    />
+                </svg>
+            </a>
         </div>
 
         <!-- Testimonials panel -->
-        <div class="min-h-0">
+        <div id="testimonials" class="min-h-0 scroll-mt-4">
             <TestimonialsSection />
         </div>
     </section>

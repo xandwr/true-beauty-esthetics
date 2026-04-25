@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
     <section
-        class="flex flex-col mx-auto w-full max-w-6xl px-4 py-6 md:min-h-[calc(100dvh-var(--header-h,0px)-var(--footer-h,0px)-2rem)]"
+        class="flex flex-col mx-auto w-full max-w-6xl px-4 py-6 md:min-h-[calc(100dvh-var(--header-h,0)-var(--footer-h,0)-2rem)]"
     >
         <header class="text-center mb-6">
             <h2 class="text-3xl md:text-4xl font-light mb-2">Get in Touch</h2>
@@ -13,7 +13,7 @@ import Layout from "../layouts/Layout.astro";
             </p>
         </header>
 
-        <div class="grid gap-6 md:grid-cols-2 flex-1 min-h-0">
+        <div class="grid gap-6 md:grid-cols-2 flex-1 min-h-0 min-w-0 text-sm md:text-lg">
             <!-- Left: contact details + CTA -->
             <div class="flex flex-col justify-between gap-6">
                 <ul class="flex flex-col gap-4 h-full">
@@ -153,7 +153,7 @@ import Layout from "../layouts/Layout.astro";
 
             <!-- Right: map -->
             <div
-                class="rounded-xl overflow-hidden border border-neutral-800 min-h-[20rem] md:min-h-0"
+                class="rounded-xl overflow-hidden border border-neutral-800 min-h-80 md:min-h-0"
             >
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2372.896!2d-113.4978!3d53.4683!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0220c98e1!2s5720+Calgary+Trail+NW%2C+Edmonton%2C+AB+T6H+2K2!5e0!3m2!1sen!2sca!4v1"

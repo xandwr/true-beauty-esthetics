@@ -25,7 +25,7 @@ const { backgroundImage, backgroundBlur = 0 } = Astro.props;
         <LocalSEO />
         <ViewTransitions />
     </head>
-    <body class="flex flex-col min-h-screen p-4">
+    <body class="flex flex-col min-h-screen md:max-h-screen overflow-x-hidden md:overflow-hidden p-4">
         {backgroundImage && (
             <div
                 class="fixed inset-0 -z-10 bg-cover bg-position-[25%_center] md:bg-center bg-fixed"

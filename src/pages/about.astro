@@ -12,7 +12,7 @@ const staff = Object.values(staffFiles)
 
 <Layout>
     <section
-        class="flex flex-col mx-auto w-full max-w-6xl px-4 py-6 gap-6 md:min-h-[calc(100dvh-var(--header-h,0px)-var(--footer-h,0px)-2rem)]"
+        class="flex flex-col mx-auto w-full max-w-6xl px-4 py-6 gap-6 md:min-h-[calc(100dvh-var(--header-h,0)-var(--footer-h,0)-2rem)]"
     >
         <!-- Header -->
         <div class="header-section relative text-center overflow-hidden rounded-xl px-8 py-6">
@@ -50,7 +50,7 @@ const staff = Object.values(staffFiles)
             <div class="grid gap-6 md:grid-cols-2">
                 {staff.map((member) => (
                     <article class="group p-6 rounded-xl bg-neutral-900/50 border border-neutral-800 hover:border-brand-muted transition-all flex flex-col sm:flex-row gap-6">
-                        <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto sm:mx-0 rounded-full bg-neutral-800 overflow-hidden flex-shrink-0 border-2 border-neutral-700 group-hover:border-brand-muted transition-colors">
+                        <div class="w-24 h-24 sm:w-28 sm:h-28 mx-auto sm:mx-0 rounded-full bg-neutral-800 overflow-hidden shrink-0 border-2 border-neutral-700 group-hover:border-brand-muted transition-colors">
                             <img
                                 src={member.image}
                                 alt={member.name}

@@ -17,6 +17,10 @@
     --color-charcoal-light: #404040;
 }
 
+html {
+    overflow-x: clip;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     color: white;
