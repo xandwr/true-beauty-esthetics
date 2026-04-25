@@ -5,38 +5,44 @@ import TestimonialsSection from "../components/TestimonialsSection.astro";
 
 <Layout backgroundImage="/images/peony_mural.png" backgroundBlur={10}>
     <section
-        class="flex flex-col m-auto items-center justify-center text-center min-h-[calc(100dvh-var(--header-h,0px)-1rem)] px-8"
+        class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-6 mx-auto w-full max-w-7xl md:min-h-[calc(100dvh-var(--header-h,0px)-var(--footer-h,0px)-2rem)]"
     >
-        <div class="flex flex-row gap-x-8 mb-4 text-6xl md:text-9xl">
-            <h2
-                class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-1"
+        <!-- Hero panel -->
+        <div class="flex flex-col items-center justify-center text-center">
+            <div class="flex flex-row gap-x-6 mb-4 text-5xl md:text-7xl lg:text-8xl">
+                <h2
+                    class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-1"
+                >
+                    Uncover
+                </h2>
+                <h2
+                    class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-2"
+                >
+                    your
+                </h2>
+                <h2
+                    class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-3"
+                >
+                    radiance.
+                </h2>
+            </div>
+
+            <p class="text-neutral-200 max-w-md mb-8 mx-auto text-base md:text-lg leading-relaxed fade-in-up stagger-4">
+                Professional esthetic services in Edmonton. Lashes, brows,
+                facials, and more.
+            </p>
+
+            <a
+                href="/services"
+                class="btn-primary fade-in-up stagger-5 inline-block"
             >
-                Uncover
-            </h2>
-            <h2
-                class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-2"
-            >
-                your
-            </h2>
-            <h2
-                class="font-light cursive md:translate-y-[-1.33rem] fade-in-up stagger-3"
-            >
-                radiance.
-            </h2>
+                Explore Services
+            </a>
         </div>
 
-        <p class="text-neutral-200 max-w-xl mb-8 mx-auto text-lg leading-relaxed fade-in-up stagger-4">
-            Professional esthetic services in Edmonton. Lashes, brows, facials,
-            and more.
-        </p>
-
-        <a
-            href="/services"
-            class="btn-primary fade-in-up stagger-5 inline-block"
-        >
-            Explore Services
-        </a>
+        <!-- Testimonials panel -->
+        <div class="min-h-0">
+            <TestimonialsSection />
+        </div>
     </section>
-
-    <TestimonialsSection />
 </Layout>
