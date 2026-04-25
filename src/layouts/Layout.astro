@@ -40,26 +40,36 @@ const { backgroundImage, backgroundBlur = 0 } = Astro.props;
         <Footer />
 
         <script>
-            // Track header height as a CSS variable for viewport-relative sizing
+            // Track header/footer heights as CSS variables for viewport-relative sizing
             if (typeof window !== 'undefined') {
-                const syncHeaderHeight = () => {
+                const syncChromeHeights = () => {
                     const header = document.querySelector('header');
-                    if (!header) return;
-                    document.documentElement.style.setProperty(
-                        '--header-h',
-                        `${header.offsetHeight}px`
-                    );
+                    const footer = document.querySelector('footer');
+                    if (header) {
+                        document.documentElement.style.setProperty(
+                            '--header-h',
+                            `${header.offsetHeight}px`
+                        );
+                    }
+                    if (footer) {
+                        document.documentElement.style.setProperty(
+                            '--footer-h',
+                            `${footer.offsetHeight}px`
+                        );
+                    }
                 };
 
-                const observeHeader = () => {
+                const observeChrome = () => {
                     const header = document.querySelector('header');
-                    if (!header) return;
-                    syncHeaderHeight();
-                    new ResizeObserver(syncHeaderHeight).observe(header);
+                    const footer = document.querySelector('footer');
+                    syncChromeHeights();
+                    const observer = new ResizeObserver(syncChromeHeights);
+                    if (header) observer.observe(header);
+                    if (footer) observer.observe(footer);
                 };
 
-                document.addEventListener('DOMContentLoaded', observeHeader);
-                document.addEventListener('astro:after-swap', observeHeader);
+                document.addEventListener('DOMContentLoaded', observeChrome);
+                document.addEventListener('astro:after-swap', observeChrome);
             }
 
             // Intersection Observer for scroll animations
