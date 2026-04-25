@@ -1,9 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TestimonialsSection from "../components/TestimonialsSection.astro";
+
+const pageTitle = "True Beauty Esthetics | Edmonton Lash Extensions, Brows, Facials & Waxing";
+const pageDescription = "Edmonton esthetics studio on Calgary Trail. Lash extensions, lash lifts, brow lamination, custom facials, teeth whitening, and waxing. Book online today.";
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
+    <h1 class="sr-only">Esthetics Studio in South Edmonton — Lash Extensions, Brows, Facials, Teeth Whitening & Waxing</h1>
     <section
         class="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-6 mx-auto w-full max-w-7xl md:min-h-[calc(100dvh-var(--header-h,0)-var(--footer-h,0)-2rem)]"
     >

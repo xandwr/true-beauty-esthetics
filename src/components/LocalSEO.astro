@@ -1,10 +1,32 @@
 ---
-// src/components/LocalSEO.astro
+import { services } from "../data/services";
+
+const offerCatalog = {
+    "@type": "OfferCatalog",
+    name: "Esthetics Services",
+    itemListElement: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: {
+            "@type": "Service",
+            name: s.title,
+            serviceType: s.category,
+        },
+        price: s.priceMin.toFixed(2),
+        priceCurrency: "CAD",
+        availability: "https://schema.org/InStock",
+        url: `https://truebeautyesthetics.ca/services/${s.slug}`,
+    })),
+};
+
 const businessData = {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
+    "@id": "https://truebeautyesthetics.ca/#business",
     name: "True Beauty Esthetics",
-    image: "https://truebeautyesthetics.ca/peony_mural.png",
+    image: "https://truebeautyesthetics.ca/images/peony_mural.png",
+    logo: "https://truebeautyesthetics.ca/favicon.svg",
+    description:
+        "Professional esthetics studio on Calgary Trail in South Edmonton offering lash extensions, lash lifts, brow lamination, facials, teeth whitening, and waxing services.",
     address: {
         "@type": "PostalAddress",
         streetAddress: "5720 Calgary Trail NW",
@@ -15,15 +37,79 @@ const businessData = {
     },
     geo: {
         "@type": "GeoCoordinates",
-        latitude: "53.4912",
-        longitude: "-113.4947",
+        latitude: 53.4912,
+        longitude: -113.4947,
     },
     telephone: "+15874014806",
     email: "truebeautyesthetics@outlook.com",
     url: "https://truebeautyesthetics.ca",
-    openingHours: "Mo-Su 09:00-19:00", // "Open until 7:00 p.m."
-    areaServed: "Edmonton, Alberta",
+    priceRange: "$$",
+    currenciesAccepted: "CAD",
+    paymentAccepted: "Cash, Debit, Credit Card, E-Transfer",
+    openingHoursSpecification: [
+        {
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            opens: "09:00",
+            closes: "19:00",
+        },
+    ],
+    areaServed: [
+        {
+            "@type": "City",
+            name: "Edmonton",
+            containedInPlace: { "@type": "AdministrativeArea", name: "Alberta" },
+        },
+        { "@type": "Place", name: "South Edmonton" },
+        { "@type": "Place", name: "Calgary Trail" },
+        { "@type": "Place", name: "Strathcona" },
+        { "@type": "Place", name: "Whyte Avenue" },
+        { "@type": "Place", name: "Allard" },
+        { "@type": "Place", name: "Ellerslie" },
+        { "@type": "Place", name: "Sherwood Park" },
+        { "@type": "Place", name: "Leduc" },
+    ],
+    serviceArea: {
+        "@type": "GeoCircle",
+        geoMidpoint: {
+            "@type": "GeoCoordinates",
+            latitude: 53.4912,
+            longitude: -113.4947,
+        },
+        geoRadius: 30000,
+    },
+    knowsAbout: [
+        "Lash Extensions",
+        "Classic Lash Extensions",
+        "Hybrid Lash Extensions",
+        "Volume Lash Extensions",
+        "Mega Volume Lash Extensions",
+        "Lash Lift",
+        "Lash Tint",
+        "Brow Lamination",
+        "Brow Tint",
+        "Custom Facials",
+        "Teeth Whitening",
+        "Waxing",
+        "Brazilian Wax",
+        "Bikini Wax",
+    ],
+    hasOfferCatalog: offerCatalog,
+    potentialAction: {
+        "@type": "ReserveAction",
+        target: {
+            "@type": "EntryPoint",
+            urlTemplate:
+                "https://book.squareup.com/appointments/k96s305aovu0gi/location/LNSS8MG6VB42H/services",
+            inLanguage: "en-CA",
+            actionPlatform: [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/MobileWebPlatform",
+            ],
+        },
+        result: { "@type": "Reservation", name: "Esthetics Appointment" },
+    },
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(businessData)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(businessData)} />

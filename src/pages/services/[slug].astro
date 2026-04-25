@@ -1,0 +1,200 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { services, BOOKING_URL, type Service } from "../../data/services";
+import { getFaqsForService, getAftercareForService } from "../../data/serviceFaqs";
+
+export async function getStaticPaths() {
+    return services.map((service) => ({
+        params: { slug: service.slug },
+        props: { service },
+    }));
+}
+
+interface Props {
+    service: Service;
+}
+
+const { service } = Astro.props;
+const faqs = getFaqsForService(service);
+const aftercare = getAftercareForService(service);
+
+const related = services
+    .filter((s) => s.category === service.category && s.slug !== service.slug)
+    .slice(0, 4);
+
+const pageTitle = `${service.title} in Edmonton | ${service.price} | True Beauty Esthetics`;
+const pageDescription = `${service.title} at our South Edmonton studio on Calgary Trail. ${service.price}, ${service.duration}. Book online with True Beauty Esthetics.`;
+
+const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    serviceType: service.category,
+    category: service.category,
+    provider: { "@id": "https://truebeautyesthetics.ca/#business" },
+    areaServed: [
+        { "@type": "City", name: "Edmonton" },
+        { "@type": "Place", name: "South Edmonton" },
+    ],
+    offers: {
+        "@type": "Offer",
+        price: service.priceMin.toFixed(2),
+        priceCurrency: "CAD",
+        ...(service.priceMax !== undefined && {
+            priceSpecification: {
+                "@type": "PriceSpecification",
+                minPrice: service.priceMin,
+                maxPrice: service.priceMax,
+                priceCurrency: "CAD",
+            },
+        }),
+        availability: "https://schema.org/InStock",
+        url: `https://truebeautyesthetics.ca/services/${service.slug}`,
+        availableAtOrFrom: { "@id": "https://truebeautyesthetics.ca/#business" },
+    },
+};
+
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+};
+
+const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://truebeautyesthetics.ca/",
+        },
+        {
+            "@type": "ListItem",
+            position: 2,
+            name: "Services",
+            item: "https://truebeautyesthetics.ca/services",
+        },
+        {
+            "@type": "ListItem",
+            position: 3,
+            name: service.title,
+            item: `https://truebeautyesthetics.ca/services/${service.slug}`,
+        },
+    ],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription} scrollable>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+    <article class="mx-auto w-full max-w-4xl px-4 py-8">
+        <nav class="text-xs text-neutral-500 mb-6" aria-label="Breadcrumb">
+            <a href="/" class="hover:text-brand-light">Home</a>
+            <span class="mx-2">/</span>
+            <a href="/services" class="hover:text-brand-light">Services</a>
+            <span class="mx-2">/</span>
+            <span class="text-neutral-300">{service.title}</span>
+        </nav>
+
+        <header class="mb-8">
+            <p class="text-xs uppercase tracking-wide text-brand-light mb-2">{service.category}</p>
+            <h1 class="text-4xl md:text-5xl font-light mb-4">{service.title} in Edmonton</h1>
+            <div class="flex flex-wrap gap-x-6 gap-y-2 items-center text-neutral-300 mb-6">
+                <span class="text-2xl font-bold text-brand-light">{service.price}</span>
+                <span class="text-neutral-400">{service.duration}</span>
+            </div>
+            <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary inline-block"
+            >
+                Book {service.title}
+            </a>
+        </header>
+
+        <section class="prose prose-invert max-w-none mb-10">
+            <h2 class="text-2xl font-light mb-4">About this service</h2>
+            <p class="text-neutral-300 leading-relaxed">{service.description}</p>
+        </section>
+
+        <section class="mb-10 p-6 rounded-xl bg-neutral-900/50 border border-neutral-800">
+            <h2 class="text-2xl font-light mb-4">Aftercare</h2>
+            <ul class="space-y-2 text-neutral-300">
+                {aftercare.map((tip) => (
+                    <li class="flex gap-3">
+                        <span class="text-brand-light shrink-0">•</span>
+                        <span>{tip}</span>
+                    </li>
+                ))}
+            </ul>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-light mb-6">Frequently asked questions</h2>
+            <div class="space-y-4">
+                {faqs.map((faq) => (
+                    <details class="p-5 rounded-xl bg-neutral-900/50 border border-neutral-800 group">
+                        <summary class="cursor-pointer font-medium text-white flex justify-between items-center gap-4">
+                            <span>{faq.question}</span>
+                            <span class="text-brand-light text-xl group-open:rotate-45 transition-transform">+</span>
+                        </summary>
+                        <p class="mt-3 text-neutral-300 leading-relaxed">{faq.answer}</p>
+                    </details>
+                ))}
+            </div>
+        </section>
+
+        <section class="mb-10 p-6 rounded-xl bg-neutral-900/50 border border-neutral-800">
+            <h2 class="text-2xl font-light mb-4">Visit us in South Edmonton</h2>
+            <p class="text-neutral-300 leading-relaxed mb-3">
+                True Beauty Esthetics is located at <strong class="text-white">5720 Calgary Trail NW, Edmonton, AB</strong> — easily accessible from South Edmonton, Strathcona, Whyte Avenue, Allard, Ellerslie, and surrounding neighborhoods.
+            </p>
+            <p class="text-neutral-300 leading-relaxed">
+                Open Monday through Friday, 9:00 AM – 7:00 PM. Call <a href="tel:+15874014806" class="text-brand-light hover:underline">(587) 401-4806</a> or book your {service.title.toLowerCase()} appointment online.
+            </p>
+        </section>
+
+        {related.length > 0 && (
+            <section class="mb-10">
+                <h2 class="text-2xl font-light mb-6">Related {service.category.toLowerCase()} services</h2>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    {related.map((r) => (
+                        <a
+                            href={`/services/${r.slug}`}
+                            class="block p-5 rounded-xl bg-neutral-900/50 border border-neutral-800 hover:border-brand-muted transition-colors"
+                        >
+                            <h3 class="text-white font-medium mb-1">{r.title}</h3>
+                            <p class="text-sm text-neutral-400 mb-2 line-clamp-2">{r.description}</p>
+                            <p class="text-brand-light font-bold">{r.price}</p>
+                        </a>
+                    ))}
+                </div>
+            </section>
+        )}
+
+        <div class="text-center mt-10">
+            <a href="/services" class="text-neutral-400 hover:text-brand-light transition-colors text-sm">
+                ← Back to all services
+            </a>
+        </div>
+    </article>
+</Layout>
+
+<style>
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>

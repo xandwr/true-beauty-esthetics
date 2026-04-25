@@ -7,11 +7,30 @@ import Footer from "../components/Footer.astro";
 import LocalSEO from "../components/LocalSEO.astro";
 
 interface Props {
+    title?: string;
+    description?: string;
+    ogImage?: string;
     backgroundImage?: string;
     backgroundBlur?: number;
+    /** Set true for long-form pages (e.g. per-service landing pages) so the desktop SPA overflow lock is disabled */
+    scrollable?: boolean;
 }
 
-const { backgroundImage = "/images/peony_mural.png", backgroundBlur = 20 } = Astro.props;
+const {
+    title = "True Beauty Esthetics | Lashes, Brows, Facials & Waxing in South Edmonton",
+    description = "Professional esthetics studio on Calgary Trail in South Edmonton. Lash extensions, brow lamination, facials, waxing, and teeth whitening. Book online today.",
+    ogImage = "/images/peony_mural.png",
+    backgroundImage = "/images/peony_mural.png",
+    backgroundBlur = 20,
+    scrollable = false,
+} = Astro.props;
+
+const bodyClass = scrollable
+    ? "flex flex-col min-h-screen overflow-x-hidden p-4"
+    : "flex flex-col min-h-screen md:max-h-screen overflow-x-hidden md:overflow-hidden p-4";
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
 ---
 
 <html lang="en">
@@ -20,12 +39,28 @@ const { backgroundImage = "/images/peony_mural.png", backgroundBlur = 20 } = Ast
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
 
-        <title>True Beauty Esthetics</title>
-        <meta name="description" content="Professional esthetic services in Edmonton. Lash extensions, brow lamination, facials, waxing, and teeth whitening at True Beauty Esthetics." />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="True Beauty Esthetics" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:locale" content="en_CA" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageUrl} />
+
         <LocalSEO />
         <ViewTransitions />
     </head>
-    <body class="flex flex-col min-h-screen md:max-h-screen overflow-x-hidden md:overflow-hidden p-4">
+    <body class={bodyClass}>
         {backgroundImage && (
             <div
                 class="fixed inset-0 -z-10 bg-cover bg-position-[25%_center] md:bg-center bg-fixed"
