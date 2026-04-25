@@ -40,6 +40,28 @@ const { backgroundImage, backgroundBlur = 0 } = Astro.props;
         <Footer />
 
         <script>
+            // Track header height as a CSS variable for viewport-relative sizing
+            if (typeof window !== 'undefined') {
+                const syncHeaderHeight = () => {
+                    const header = document.querySelector('header');
+                    if (!header) return;
+                    document.documentElement.style.setProperty(
+                        '--header-h',
+                        `${header.offsetHeight}px`
+                    );
+                };
+
+                const observeHeader = () => {
+                    const header = document.querySelector('header');
+                    if (!header) return;
+                    syncHeaderHeight();
+                    new ResizeObserver(syncHeaderHeight).observe(header);
+                };
+
+                document.addEventListener('DOMContentLoaded', observeHeader);
+                document.addEventListener('astro:after-swap', observeHeader);
+            }
+
             // Intersection Observer for scroll animations
             if (typeof window !== 'undefined') {
                 const observerOptions = {

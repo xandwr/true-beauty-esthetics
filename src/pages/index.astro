@@ -1,12 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BeforeAfterGallery from "../components/BeforeAfterGallery.astro";
 import TestimonialsSection from "../components/TestimonialsSection.astro";
 ---
 
 <Layout backgroundImage="/images/peony_mural.png" backgroundBlur={10}>
     <section
-        class="flex flex-col m-auto items-center justify-center text-center min-h-[60vh] px-8"
+        class="flex flex-col m-auto items-center justify-center text-center min-h-[calc(100dvh-var(--header-h,0px)-1rem)] px-8"
     >
         <div class="flex flex-row gap-x-8 mb-4 text-6xl md:text-9xl">
             <h2
@@ -39,6 +38,5 @@ import TestimonialsSection from "../components/TestimonialsSection.astro";
         </a>
     </section>
 
-    <BeforeAfterGallery />
     <TestimonialsSection />
 </Layout>
