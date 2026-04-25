@@ -21,7 +21,7 @@ const categoryColors: Record<string, string> = {
 };
 
 const categoryColor = categoryColors[category.toLowerCase()] || "bg-neutral-700 text-white";
-const detailHref = slug ? `/services/${slug}` : null;
+const detailHref = slug ? `/services/${slug}/` : null;
 ---
 
 <div

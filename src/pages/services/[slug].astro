@@ -100,7 +100,7 @@ const breadcrumbSchema = {
         <nav class="text-xs text-neutral-500 mb-6" aria-label="Breadcrumb">
             <a href="/" class="hover:text-brand-light">Home</a>
             <span class="mx-2">/</span>
-            <a href="/services" class="hover:text-brand-light">Services</a>
+            <a href="/services/" class="hover:text-brand-light">Services</a>
             <span class="mx-2">/</span>
             <span class="text-neutral-300">{service.title}</span>
         </nav>
@@ -170,7 +170,7 @@ const breadcrumbSchema = {
                 <div class="grid sm:grid-cols-2 gap-4">
                     {related.map((r) => (
                         <a
-                            href={`/services/${r.slug}`}
+                            href={`/services/${r.slug}/`}
                             class="block p-5 rounded-xl bg-neutral-900/50 border border-neutral-800 hover:border-brand-muted transition-colors"
                         >
                             <h3 class="text-white font-medium mb-1">{r.title}</h3>
@@ -183,7 +183,7 @@ const breadcrumbSchema = {
         )}
 
         <div class="text-center mt-10">
-            <a href="/services" class="text-neutral-400 hover:text-brand-light transition-colors text-sm">
+            <a href="/services/" class="text-neutral-400 hover:text-brand-light transition-colors text-sm">
                 ← Back to all services
             </a>
         </div>
